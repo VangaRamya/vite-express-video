@@ -6,7 +6,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const app = express();
 
-app.use(cors({ origin: ["http://localhost:5173"] }));
+app.use(cors({ origin: ["http://localhost:5173", "https://vite-express-video.vercel.app"] }));
 app.use(express.json());
 
 app.post("/api/contact", async (req, res) => {
