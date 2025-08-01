@@ -78,7 +78,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 100%;
+  width: 80%;
   border: 1px solid #d1d5db;
   border-radius: 0.375rem;
   padding: 0.5rem 0.75rem;
@@ -86,7 +86,7 @@ const Input = styled.input`
 `;
 
 const Select = styled.select`
-  width: 100%;
+  width: 90%;
   border: 1px solid #d1d5db;
   border-radius: 0.375rem;
   padding: 0.5rem 0.75rem;
@@ -94,7 +94,7 @@ const Select = styled.select`
 `;
 
 const Textarea = styled.textarea`
-  width: 100%;
+  width: 93%;
   border: 1px solid #d1d5db;
   border-radius: 0.375rem;
   padding: 0.5rem 0.75rem;
@@ -130,244 +130,242 @@ const SubmitButton = styled.button`
 `;
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    orderType: "",
-    products: [],
-    message: "",
-    terms: false,
-  });
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        orderType: "",
+        products: [],
+        message: "",
+        terms: false,
+    });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const microgreens = [
-    "Sunflower Microgreens",
-    "Radish Microgreens",
-    "Wheatgrass Microgreens",
-    "Pea Shoot Microgreens",
-    "Mustard Microgreens",
-  ];
+    const microgreens = [
+        "Sunflower Microgreens",
+        "Radish Microgreens",
+        "Wheatgrass Microgreens",
+        "Pea Shoot Microgreens",
+        "Mustard Microgreens",
+    ];
 
-  const handleProductChange = (product, checked) => {
-    setFormData((prev) => ({
-      ...prev,
-      products: checked
-        ? [...prev.products, product]
-        : prev.products.filter((p) => p !== product),
-    }));
-  };
+    const handleProductChange = (product, checked) => {
+        setFormData((prev) => ({
+            ...prev,
+            products: checked
+                ? [...prev.products, product]
+                : prev.products.filter((p) => p !== product),
+        }));
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    if (!formData.terms) {
-      alert("You must accept our terms and conditions to proceed.");
-      return;
-    }
+        if (!formData.terms) {
+            alert("You must accept our terms and conditions to proceed.");
+            return;
+        }
 
-    setIsSubmitting(true);
+        setIsSubmitting(true);
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+        try {
+            const response = await fetch("https://vite-express-video.onrender.com/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
 
-      const data = await response.json();
+            const data = await response.json();
 
-      if (data.success) {
-        alert("Message sent successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          orderType: "",
-          products: [],
-          message: "",
-          terms: false,
-        });
-      } else {
-        throw new Error(data.message || "Failed to send message");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Something went wrong. Please try again later.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+            if (data.success) {
+                alert("Message sent successfully!");
+                setFormData({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    orderType: "",
+                    products: [],
+                    message: "",
+                    terms: false,
+                });
+            } else {
+                throw new Error(data.message || "Failed to send message");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Something went wrong. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
-  return (
-    <Container>
-      <Wrapper>
-        <SectionTitle>Get in Touch</SectionTitle>
-        <SectionDescription>
-          Ready to experience fresh, locally grown microgreens? Contact us to
-          place an order or learn more about our growing process.
-        </SectionDescription>
+    return (
+        <Container>
+            <Wrapper>
+                <SectionTitle>Get in Touch</SectionTitle>
+                <SectionDescription>
+                    Ready to experience fresh, locally grown microgreens? Contact us to
+                    place an order or learn more about our growing process.
+                </SectionDescription>
 
-        <Grid>
-          {/* Contact Info */}
-          <div>
-            <Card>
-              <CardTitle>🌿 Contact Information</CardTitle>
-              <InfoItem>
-                <span>📧</span>
-                <div>
-                  <p><strong>Email</strong></p>
-                  <p>hello@trueleafmicrogreens.com</p>
-                </div>
-              </InfoItem>
-              <InfoItem>
-                <span>📞</span>
-                <div>
-                  <p><strong>Phone</strong></p>
-                  <p>(555) 123-4567</p>
-                </div>
-              </InfoItem>
-              <InfoItem>
-                <span>📍</span>
-                <div>
-                  <p><strong>Location</strong></p>
-                  <p>Urban Farm, Downtown Area</p>
-                </div>
-              </InfoItem>
-              <InfoItem>
-                <span>⏰</span>
-                <div>
-                  <p><strong>Response Time</strong></p>
-                  <p>Within 24 hours</p>
-                </div>
-              </InfoItem>
-            </Card>
+                <Grid>
+                    {/* Contact Info */}
+                    <div>
+                        <Card>
+                            <CardTitle>🌿 Contact Information</CardTitle>
+                            <InfoItem>
+                                <span>📧</span>
+                                <div>
+                                    <p><strong>Email</strong></p>
+                                    <p>hello@trueleafmicrogreens.com</p>
+                                </div>
+                            </InfoItem>
+                            <InfoItem>
+                                <span>📞</span>
+                                <div>
+                                    <p><strong>Phone</strong></p>
+                                    <p>(555) 123-4567</p>
+                                </div>
+                            </InfoItem>
+                            <InfoItem>
+                                <span>📍</span>
+                                <div>
+                                    <p><strong>Location</strong></p>
+                                    <p>Urban Farm, Downtown Area</p>
+                                </div>
+                            </InfoItem>
+                            <InfoItem>
+                                <span>⏰</span>
+                                <div>
+                                    <p><strong>Response Time</strong></p>
+                                    <p>Within 24 hours</p>
+                                </div>
+                            </InfoItem>
+                        </Card>
 
-            <Card>
-              <CardTitle>Order Information</CardTitle>
-              <ul>
-                <li>Fresh microgreens cut to order</li>
-                <li>Minimum order: $20</li>
-                <li>Local delivery available</li>
-                <li>Pickup appointments welcome</li>
-                <li>Wholesale pricing for restaurants</li>
-              </ul>
-            </Card>
-          </div>
+                        <Card>
+                            <CardTitle>Order Information</CardTitle>
+                            <ul>
+                                <li>Fresh microgreens cut to order</li>
+                                <li>Minimum order: $20</li>
+                                <li>Local delivery available</li>
+                                <li>Pickup appointments welcome</li>
+                                <li>Wholesale pricing for restaurants</li>
+                            </ul>
+                        </Card>
+                    </div>
 
-          {/* Contact Form */}
-          <Card>
-            <form onSubmit={handleSubmit}>
-              <CardTitle>Place Your Order</CardTitle>
+                    {/* Contact Form */}
+                    <Card>
+                        <form onSubmit={handleSubmit}>
+                            <CardTitle>Place Your Order</CardTitle>
 
-              <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr" }}>
-                <div>
-                  <Label>Full Name *</Label>
-                  <Input
-                    required
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <Label>Email Address *</Label>
-                  <Input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
+                            <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr" }}>
+                                <div>
+                                    <Label>Full Name *</Label>
+                                    <Input
+                                        required
+                                        value={formData.name}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, name: e.target.value })
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <Label>Email Address *</Label>
+                                    <Input
+                                        type="email"
+                                        required
+                                        value={formData.email}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, email: e.target.value })
+                                        }
+                                    />
+                                </div>
+                            </div>
 
-              <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr", marginTop: "1rem" }}>
-                <div>
-                  <Label>Phone Number</Label>
-                  <Input
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <Label>Order Type *</Label>
-                  <Select
-                    required
-                    value={formData.orderType}
-                    onChange={(e) =>
-                      setFormData({ ...formData, orderType: e.target.value })
-                    }
-                  >
-                    <option value="">Select order type</option>
-                    <option value="personal">Personal Order</option>
-                    <option value="restaurant">Restaurant/Business</option>
-                    <option value="weekly">Weekly Subscription</option>
-                    <option value="inquiry">General Inquiry</option>
-                  </Select>
-                </div>
-              </div>
+                            <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr", marginTop: "1rem" }}>
+                                <div>
+                                    <Label>Phone Number</Label>
+                                    <Input
+                                        value={formData.phone}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, phone: e.target.value })
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <Label>Order Type *</Label>
+                                    <Select
+                                        required
+                                        value={formData.orderType}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, orderType: e.target.value })
+                                        }
+                                    >
+                                        <option value="">Select order type</option>
+                                        <option value="personal">Personal Order</option>
+                                        <option value="restaurant">Restaurant/Business</option>
+                                        <option value="weekly">Weekly Subscription</option>
+                                        <option value="inquiry">General Inquiry</option>
+                                    </Select>
+                                </div>
+                            </div>
 
-              <div style={{ marginTop: "1rem" }}>
-                <Label>Which microgreens interest you?</Label>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem", marginTop: "0.5rem" }}>
-                  {microgreens.map((product) => (
-                    <CheckboxLabel key={product}>
-                      <input
-                        type="checkbox"
-                        checked={formData.products.includes(product)}
-                        onChange={(e) =>
-                          handleProductChange(product, e.target.checked)
-                        }
-                      />
-                      {product}
-                    </CheckboxLabel>
-                  ))}
-                </div>
-              </div>
+                            <div style={{ marginTop: "1rem" }}>
+                                <Label>Which microgreens interest you?</Label>
+                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem", marginTop: "0.5rem" }}>
+                                    {microgreens.map((product) => (
+                                        <CheckboxLabel key={product}>
+                                            <input
+                                                type="checkbox"
+                                                checked={formData.products.includes(product)}
+                                                onChange={(e) =>
+                                                    handleProductChange(product, e.target.checked)
+                                                }
+                                            />
+                                            {product}
+                                        </CheckboxLabel>
+                                    ))}
+                                </div>
+                            </div>
 
-              <div style={{ marginTop: "1rem" }}>
-                <Label>Message or Special Requirements</Label>
-                <Textarea
-                  rows="4"
-                  placeholder="Tell us about your order, preferences, etc..."
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                />
-              </div>
+                            <div style={{ marginTop: "1rem" }}>
+                                <Label>Full Address (include city, state, and pin code)</Label>
+                                <Textarea
+                                    rows="4"
+                                    placeholder="Mention H:no and landmark. (include city, state, and pin code)"
+                                    value={formData.message}
+                                    onChange={(e) =>
+                                        setFormData({ ...formData, message: e.target.value })
+                                    }
+                                />
+                            </div>
 
-              <div style={{ marginTop: "1rem" }}>
-                <CheckboxLabel>
-                  <input
-                    type="checkbox"
-                    checked={formData.terms}
-                    onChange={(e) =>
-                      setFormData({ ...formData, terms: e.target.checked })
-                    }
-                  />
-                  I agree to the terms and conditions and understand orders are
-                  subject to availability and seasonal growing schedules.
-                </CheckboxLabel>
-              </div>
+                            <div style={{ marginTop: "1rem" }}>
+                                <CheckboxLabel>
+                                    <input
+                                        type="checkbox"
+                                        checked={formData.terms}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, terms: e.target.checked })
+                                        }
+                                    />
+                                    I agree to the terms and conditions and understand orders are
+                                    subject to availability and seasonal growing schedules.
+                                </CheckboxLabel>
+                            </div>
 
-              <SubmitButton type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </SubmitButton>
-            </form>
-          </Card>
-        </Grid>
-      </Wrapper>
-    </Container>
-  );
+                            <SubmitButton type="submit" disabled={isSubmitting}>
+                                {isSubmitting ? "Sending..." : "Send Message"}
+                            </SubmitButton>
+                        </form>
+                    </Card>
+                </Grid>
+            </Wrapper>
+        </Container>
+    );
 };
 
 export default Contact;
