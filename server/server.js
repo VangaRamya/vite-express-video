@@ -10,7 +10,7 @@ app.use(cors({ origin: ["http://localhost:5173", "https://vite-express-video.ver
 app.use(express.json());
 
 app.post("/api/contact", async (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email,phone, orderType, products, message,address,landmark } = req.body;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -30,6 +30,10 @@ app.post("/api/contact", async (req, res) => {
         <p>Hi ${name},</p>
         <p>Thanks for reaching out! Here's a copy of your message:</p>
         <hr />
+        <p><strong>Order Type:</strong> ${orderType}</p>
+        <p><strong>Products:</strong> ${products}</p>
+        <p><strong>Address:</strong> ${address}</p>
+        <p><strong>Landmark:</strong> ${landmark}</p>
         <p><strong>Message:</strong></p>
         <p>${message}</p>
         <hr />
@@ -41,12 +45,16 @@ app.post("/api/contact", async (req, res) => {
     await transporter.sendMail({
       from: `"Website Contact" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
-      subject: `New Contact Form Submission from ${name}`,
+      subject: `New Order Received from ${name}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Order Type:</strong> ${orderType}</p>
+        <p><strong>Products:</strong> ${products}</p>
+        <p><strong>Message:</strong> ${message}</p>
+        <p><strong>Address:</strong> ${address}</p>
+        <p><strong>Landmark:</strong> ${landmark}</p>
       `,
     });
 

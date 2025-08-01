@@ -1,57 +1,26 @@
-import { useState } from "react";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("");
+// Basic layout and pages (you can customize these as per your real project)
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import Products from "./pages/Products";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
-  const handleChange = (e) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
-
-    const res = await fetch("https://vite-express-video.onrender.com/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(form),
-    });
-
-    const data = await res.json();
-    setStatus(data.success ? "✅ Message sent!" : "❌ Failed to send.");
-  };
-
-  return (
-    <div style={{ padding: "2rem", maxWidth: "400px", margin: "auto" }}>
-      <h2>Contact Us</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="name"
-          placeholder="Your Name"
-          value={form.name}
-          onChange={handleChange}
-          required
-        /><br />
-        <input
-          name="email"
-          type="email"
-          placeholder="Your Email"
-          value={form.email}
-          onChange={handleChange}
-          required
-        /><br />
-        <textarea
-          name="message"
-          placeholder="Your Message"
-          value={form.message}
-          onChange={handleChange}
-          required
-        /><br />
-        <button type="submit">Send</button>
-      </form>
-      <p>{status}</p>
-    </div>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Route>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  </BrowserRouter>
+);
 
 export default App;
