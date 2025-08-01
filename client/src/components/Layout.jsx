@@ -84,7 +84,7 @@ const Layout = () => {
       </nav>
 
       {/* Main Content */}
-      <main style={{ padding: "20px" }}>
+      <main style={{ padding: "20px", backgroundColor: "#fff" }}>
         <Outlet />
       </main>
 
