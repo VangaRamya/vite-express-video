@@ -1,4 +1,133 @@
 import { useState } from "react";
+import styled from "styled-components";
+
+const Container = styled.div`
+  min-height: 100vh;
+  padding: 3rem 1rem;
+  background-color: #f9fafb;
+  color: #111827;
+`;
+
+const Wrapper = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+`;
+
+const SectionTitle = styled.h1`
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+`;
+
+const SectionDescription = styled.p`
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  text-align: center;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: 1fr 2fr;
+  }
+`;
+
+const Card = styled.div`
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+`;
+
+const CardTitle = styled.h3`
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const InfoItem = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  & > div {
+    font-size: 0.875rem;
+    p {
+      margin: 4px 0;
+    }
+  }
+
+  & span {
+    font-size: 1.125rem;
+  }
+`;
+
+const Label = styled.label`
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+`;
+
+const Select = styled.select`
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+`;
+
+const Textarea = styled.textarea`
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+`;
+
+const CheckboxLabel = styled.label`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+`;
+
+const SubmitButton = styled.button`
+  width: 100%;
+  background-color: #16a34a;
+  color: white;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #15803d;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -74,77 +203,70 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen py-12 px-4 bg-gray-50 text-gray-900">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Ready to experience fresh, locally grown microgreens? Contact us to
-            place an order or learn more about our growing process.
-          </p>
-        </div>
+    <Container>
+      <Wrapper>
+        <SectionTitle>Get in Touch</SectionTitle>
+        <SectionDescription>
+          Ready to experience fresh, locally grown microgreens? Contact us to
+          place an order or learn more about our growing process.
+        </SectionDescription>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <Grid>
           {/* Contact Info */}
-          <div className="space-y-6">
-            <div className="bg-white p-6 rounded-lg shadow">
-              <h3 className="text-lg font-semibold flex items-center mb-4">
-                🌿 Contact Information
-              </h3>
-              <div className="space-y-4 text-sm">
-                <div className="flex items-start gap-2">
-                  <span>📧</span>
-                  <div>
-                    <p className="font-medium">Email</p>
-                    <p>hello@trueleafmicrogreens.com</p>
-                  </div>
+          <div>
+            <Card>
+              <CardTitle>🌿 Contact Information</CardTitle>
+              <InfoItem>
+                <span>📧</span>
+                <div>
+                  <p><strong>Email</strong></p>
+                  <p>hello@trueleafmicrogreens.com</p>
                 </div>
-                <div className="flex items-start gap-2">
-                  <span>📞</span>
-                  <div>
-                    <p className="font-medium">Phone</p>
-                    <p>(555) 123-4567</p>
-                  </div>
+              </InfoItem>
+              <InfoItem>
+                <span>📞</span>
+                <div>
+                  <p><strong>Phone</strong></p>
+                  <p>(555) 123-4567</p>
                 </div>
-                <div className="flex items-start gap-2">
-                  <span>📍</span>
-                  <div>
-                    <p className="font-medium">Location</p>
-                    <p>Urban Farm, Downtown Area</p>
-                  </div>
+              </InfoItem>
+              <InfoItem>
+                <span>📍</span>
+                <div>
+                  <p><strong>Location</strong></p>
+                  <p>Urban Farm, Downtown Area</p>
                 </div>
-                <div className="flex items-start gap-2">
-                  <span>⏰</span>
-                  <div>
-                    <p className="font-medium">Response Time</p>
-                    <p>Within 24 hours</p>
-                  </div>
+              </InfoItem>
+              <InfoItem>
+                <span>⏰</span>
+                <div>
+                  <p><strong>Response Time</strong></p>
+                  <p>Within 24 hours</p>
                 </div>
-              </div>
-            </div>
+              </InfoItem>
+            </Card>
 
-            <div className="bg-white p-6 rounded-lg shadow text-sm text-gray-700 space-y-2">
-              <h3 className="text-lg font-semibold mb-2">Order Information</h3>
-              <ul className="list-disc list-inside">
+            <Card>
+              <CardTitle>Order Information</CardTitle>
+              <ul>
                 <li>Fresh microgreens cut to order</li>
                 <li>Minimum order: $20</li>
                 <li>Local delivery available</li>
                 <li>Pickup appointments welcome</li>
                 <li>Wholesale pricing for restaurants</li>
               </ul>
-            </div>
+            </Card>
           </div>
 
-          {/* Form */}
-          <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow">
-            <h2 className="text-xl font-semibold mb-6">Place Your Order</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Contact Form */}
+          <Card>
+            <form onSubmit={handleSubmit}>
+              <CardTitle>Place Your Order</CardTitle>
+
+              <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr" }}>
                 <div>
-                  <label className="block mb-1 font-medium">Full Name *</label>
-                  <input
-                    type="text"
-                    className="w-full border rounded px-3 py-2"
+                  <Label>Full Name *</Label>
+                  <Input
                     required
                     value={formData.name}
                     onChange={(e) =>
@@ -153,10 +275,9 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block mb-1 font-medium">Email Address *</label>
-                  <input
+                  <Label>Email Address *</Label>
+                  <Input
                     type="email"
-                    className="w-full border rounded px-3 py-2"
                     required
                     value={formData.email}
                     onChange={(e) =>
@@ -166,12 +287,10 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr", marginTop: "1rem" }}>
                 <div>
-                  <label className="block mb-1 font-medium">Phone Number</label>
-                  <input
-                    type="tel"
-                    className="w-full border rounded px-3 py-2"
+                  <Label>Phone Number</Label>
+                  <Input
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
@@ -179,9 +298,8 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block mb-1 font-medium">Order Type *</label>
-                  <select
-                    className="w-full border rounded px-3 py-2"
+                  <Label>Order Type *</Label>
+                  <Select
                     required
                     value={formData.orderType}
                     onChange={(e) =>
@@ -193,17 +311,15 @@ const Contact = () => {
                     <option value="restaurant">Restaurant/Business</option>
                     <option value="weekly">Weekly Subscription</option>
                     <option value="inquiry">General Inquiry</option>
-                  </select>
+                  </Select>
                 </div>
               </div>
 
-              <div>
-                <label className="block font-medium mb-2">
-                  Which microgreens interest you?
-                </label>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div style={{ marginTop: "1rem" }}>
+                <Label>Which microgreens interest you?</Label>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem", marginTop: "0.5rem" }}>
                   {microgreens.map((product) => (
-                    <label key={product} className="flex items-center gap-2">
+                    <CheckboxLabel key={product}>
                       <input
                         type="checkbox"
                         checked={formData.products.includes(product)}
@@ -211,53 +327,46 @@ const Contact = () => {
                           handleProductChange(product, e.target.checked)
                         }
                       />
-                      <span>{product}</span>
-                    </label>
+                      {product}
+                    </CheckboxLabel>
                   ))}
                 </div>
               </div>
 
-              <div>
-                <label className="block font-medium mb-1">
-                  Message or Special Requirements
-                </label>
-                <textarea
+              <div style={{ marginTop: "1rem" }}>
+                <Label>Message or Special Requirements</Label>
+                <Textarea
                   rows="4"
-                  className="w-full border rounded px-3 py-2"
-                  placeholder="Tell us about your order, delivery preferences, questions, etc..."
+                  placeholder="Tell us about your order, preferences, etc..."
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                ></textarea>
+                />
               </div>
 
-              <div className="flex items-start gap-2">
-                <input
-                  type="checkbox"
-                  checked={formData.terms}
-                  onChange={(e) =>
-                    setFormData({ ...formData, terms: e.target.checked })
-                  }
-                />
-                <label className="text-sm">
+              <div style={{ marginTop: "1rem" }}>
+                <CheckboxLabel>
+                  <input
+                    type="checkbox"
+                    checked={formData.terms}
+                    onChange={(e) =>
+                      setFormData({ ...formData, terms: e.target.checked })
+                    }
+                  />
                   I agree to the terms and conditions and understand orders are
                   subject to availability and seasonal growing schedules.
-                </label>
+                </CheckboxLabel>
               </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
-              >
+              <SubmitButton type="submit" disabled={isSubmitting}>
                 {isSubmitting ? "Sending..." : "Send Message"}
-              </button>
+              </SubmitButton>
             </form>
-          </div>
-        </div>
-      </div>
-    </div>
+          </Card>
+        </Grid>
+      </Wrapper>
+    </Container>
   );
 };
 
