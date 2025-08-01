@@ -135,6 +135,8 @@ const Contact = () => {
         email: "",
         phone: "",
         orderType: "",
+        address: "",
+        landmark: "",
         products: [],
         message: "",
         terms: false,
@@ -185,6 +187,8 @@ const Contact = () => {
                     email: "",
                     phone: "",
                     orderType: "",
+                    address: "",
+                    landmark: "",
                     products: [],
                     message: "",
                     terms: false,
@@ -313,6 +317,29 @@ const Contact = () => {
                                 </div>
                             </div>
 
+                            <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr", marginTop: "1rem" }}>
+                                <div>
+                                    <Label>Address *</Label>
+                                    <Input
+                                        required
+                                        value={formData.address}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, address: e.target.value })
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <Label>Landmark *</Label>
+                                    <Input
+                                        required
+                                        value={formData.landmark}
+                                        onChange={(e) =>
+                                            setFormData({ ...formData, landmark: e.target.value })
+                                        }
+                                    />
+                                </div>
+                            </div>
+
                             <div style={{ marginTop: "1rem" }}>
                                 <Label>Which microgreens interest you?</Label>
                                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem", marginTop: "0.5rem" }}>
@@ -332,10 +359,10 @@ const Contact = () => {
                             </div>
 
                             <div style={{ marginTop: "1rem" }}>
-                                <Label>Full Address (include city, state, and pin code)</Label>
+                                <Label>Message or Special Requirements</Label>
                                 <Textarea
                                     rows="4"
-                                    placeholder="Mention H:no and landmark. (include city, state, and pin code)"
+                                    placeholder="Tell us about your order, delivery preferences, questions, or any special requirements"
                                     value={formData.message}
                                     onChange={(e) =>
                                         setFormData({ ...formData, message: e.target.value })
@@ -343,7 +370,7 @@ const Contact = () => {
                                 />
                             </div>
 
-                            <div style={{ marginTop: "1rem" }}>
+                            <div style={{ marginTop: "1rem" , marginBottom: "1rem"}}>
                                 <CheckboxLabel>
                                     <input
                                         type="checkbox"
