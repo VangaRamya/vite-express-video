@@ -106,7 +106,7 @@ const Home = () => {
         }}>
           {benefits.map((benefit, i) => (
             <div key={i} style={{ flex: "1 1 200px", textAlign: "center" }}>
-              <div style={{ fontSize: "2rem", marginBottom: "10px", color: "##ff0000" }}>{benefit.icon}</div>
+              <div style={{ fontSize: "2rem", marginBottom: "10px", color: "#ff0000" }}>{benefit.icon}</div>
               <h3 style={{ color: "#ff0000" }}>{benefit.title}</h3>
               <p style={{ color: "#ff0000" }}>{benefit.description}</p>
             </div>
