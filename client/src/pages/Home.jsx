@@ -94,7 +94,7 @@ const Home = () => {
 
       {/* Benefits Section */}
       <section style={{ padding: "60px 20px", background: "#f4f4f4" }}>
-        <h2 style={{ textAlign: "center", fontSize: "2rem" }}>Why Choose TrueLeaf?</h2>
+        <h2 style={{ textAlign: "center", fontSize: "2rem", color: "#ffffff", fontWeight: "bold" }}>Why Choose TrueLeaf?</h2>
         <p style={{ textAlign: "center", marginBottom: "40px" }}>
           Experience the difference of truly fresh, locally grown microgreens
         </p>
