@@ -1,267 +1,251 @@
 @use 'variables' as v;
+@use 'mixins' as m;
 
-// Hero Section
 .hero-section {
-    background-size: cover;
-    background-position: center;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
+  background-size: cover;
+  background-position: center;
+  height: 70vh;
+  @include m.center-content;
+  color: v.$light-bg;
+  text-align: center;
+  position: relative;
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-content {
     position: relative;
+    z-index: 1;
+    max-width: 43.75rem; // 700px
+    margin: 0 auto;
+    padding: v.$padding-base;
 
-    .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+    h1 {
+      font-weight: bold;
+      @include m.responsive-text(2.5rem, 2rem, 1.5rem);
 
-    .hero-content {
-        position: relative;
-        z-index: 1;
-        max-width: 700px;
-
-        h1 {
-            font-size: 3rem;
-            font-weight: bold;
-
-            .highlight {
-                color: v.$primary-green;
-            }
-        }
-
-        p {
-            font-size: 1.25rem;
-            margin-top: 1rem;
-        }
-
-        .hero-buttons {
-            margin-top: 2rem;
-
-            .btn-primary {
-                padding: 10px 20px;
-                margin-right: 1rem;
-                background-color: v.$primary-green;
-                color: #fff;
-                border: none;
-                text-decoration: none;
-                display: inline-block;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: v.$primary-green-dark;
-                }
-            }
-
-            .btn-secondary {
-                padding: 10px 20px;
-                border: 1px solid #fff;
-                color: #fff;
-                background: transparent;
-                text-decoration: none;
-                display: inline-block;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: rgba(255, 255, 255, 0.1);
-                }
-            }
-        }
-    }
-}
-
-// Benefits Section
-.benefits-section {
-    padding: 60px 20px;
-    background: v.$background-light;
-
-    h2 {
-        text-align: center;
-        font-size: 2rem;
-        color: v.$text-dark;
-        font-weight: bold;
-    }
-
-    .section-description {
-        text-align: center;
-        margin-bottom: 40px;
-        color: v.$text-muted;
-    }
-
-    .benefits-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 20px;
-
-        .benefit-item {
-            flex: 1 1 200px;
-            text-align: center;
-
-            .benefit-icon {
-                font-size: 2rem;
-                margin-bottom: 10px;
-            }
-
-            h3 {
-                color: #ff0000;
-                margin-bottom: 10px;
-            }
-
-            p {
-                color: #bd2929;
-            }
-        }
-    }
-}
-
-// Featured Products
-.featured-products {
-    padding: 60px 20px;
-
-    h2 {
-        text-align: center;
-        font-size: 2rem;
-        color: v.$text-dark;
-        margin-bottom: 10px;
-    }
-
-    .section-description {
-        text-align: center;
-        margin-bottom: 40px;
-        color: v.$text-muted;
-    }
-
-    .products-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-
-        @media (max-width: 600px) {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .product-card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-            width: 300px;
-            transition: transform 0.2s ease;
-
-            &:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            }
-
-            .product-image {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-            }
-
-            .product-content {
-                padding: 20px;
-
-                .product-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-start;
-                    margin-bottom: 10px;
-
-                    h3 {
-                        margin: 0;
-                        color: v.$text-dark;
-                    }
-
-                    .badge {
-                        background-color: v.$badge-bg;
-                        padding: 4px 8px;
-                        border-radius: 4px;
-                        font-size: 0.8rem;
-                        color: v.$badge-color;
-                    }
-                }
-
-                .product-description {
-                    color: v.$text-muted;
-                    margin-bottom: 10px;
-                }
-
-                .product-footer {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-
-                    .price {
-                        font-weight: bold;
-                        color: v.$primary-green;
-                        font-size: 1.1rem;
-                    }
-
-                    .rating {
-                        color: v.$rating-color;
-                    }
-                }
-            }
-        }
-    }
-
-    .view-all-button {
-        text-align: center;
-        margin-top: 30px;
-
-        .btn-primary {
-            padding: 10px 20px;
-            background-color: v.$primary-green;
-            color: #fff;
-            border: none;
-            text-decoration: none;
-            display: inline-block;
-            cursor: pointer;
-
-            &:hover {
-                background-color: v.$primary-green-dark;
-            }
-        }
-    }
-}
-
-// Story Section
-.story-section {
-    background-color: #e8f5e9;
-    padding: 60px 20px;
-    text-align: center;
-
-    h2 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-        color: v.$text-dark;
-    }
-
-    .story-content {
-        max-width: 600px;
-        margin: 0 auto 30px;
-        color: v.$text-muted;
-        line-height: 1.6;
-    }
-
-    .btn-outline {
-        padding: 10px 20px;
-        border: 1px solid v.$primary-green;
-        background-color: #fff;
+      .highlight {
         color: v.$primary-green;
+      }
+    }
+
+    p {
+      margin-top: 1rem;
+      @include m.responsive-text(1.25rem, 1rem, 0.875rem);
+    }
+
+    .hero-buttons {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+
+      .btn-primary {
+        padding: 0.625rem 1.25rem; // 10px 20px
+        background-color: v.$primary-green;
+        color: #fff;
+        border: none;
         text-decoration: none;
-        display: inline-block;
         cursor: pointer;
-        transition: all 0.2s ease;
 
         &:hover {
-            background-color: v.$primary-green;
-            color: #fff;
+          background-color: v.$primary-green-dark;
         }
+      }
+
+      .btn-secondary {
+        padding: 0.625rem 1.25rem;
+        border: 1px solid #fff;
+        color: #fff;
+        background: transparent;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
     }
+  }
+}
+
+.benefits-section {
+  padding: 3.75rem 1.25rem; // 60px 20px
+  background: v.$background-light;
+
+  h2 {
+    text-align: center;
+    font-weight: bold;
+    color: v.$text-dark;
+    @include m.responsive-text(2rem, 1.5rem, 1.25rem);
+  }
+
+  .section-description {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: v.$text-muted;
+  }
+
+  .benefits-grid {
+    @include m.responsive-grid(14rem); // 224px
+    justify-content: center;
+
+    .benefit-item {
+      text-align: center;
+
+      .benefit-icon {
+        font-size: 2rem;
+        margin-bottom: 0.625rem;
+      }
+
+      h3 {
+        color: #ff0000;
+        margin-bottom: 0.625rem;
+      }
+
+      p {
+        color: #bd2929;
+      }
+    }
+  }
+}
+
+.featured-products {
+  padding: 3.75rem 1.25rem;
+
+  h2 {
+    text-align: center;
+    color: v.$text-dark;
+    margin-bottom: 0.625rem;
+    @include m.responsive-text(2rem, 1.5rem, 1.25rem);
+  }
+
+  .section-description {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: v.$text-muted;
+  }
+
+  .products-grid {
+    @include m.responsive-grid(18rem);
+
+    .product-card {
+      border: 1px solid #ccc;
+      border-radius: v.$border-radius;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-0.3125rem); // 5px
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1); // 4px 12px
+      }
+
+      .product-image {
+        width: 100%;
+        height: 12.5rem; // 200px
+        object-fit: cover;
+      }
+
+      .product-content {
+        padding: 1.25rem;
+
+        .product-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          margin-bottom: 0.625rem;
+
+          h3 {
+            margin: 0;
+            color: v.$text-dark;
+          }
+
+          .badge {
+            background-color: v.$badge-bg;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            color: v.$badge-color;
+          }
+        }
+
+        .product-description {
+          color: v.$text-muted;
+          margin-bottom: 0.625rem;
+        }
+
+        .product-footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .price {
+            font-weight: bold;
+            color: v.$primary-green;
+            font-size: 1.1rem;
+          }
+
+          .rating {
+            color: v.$rating-color;
+          }
+        }
+      }
+    }
+  }
+
+  .view-all-button {
+    text-align: center;
+    margin-top: 1.875rem; // 30px
+
+    .btn-primary {
+      padding: 0.625rem 1.25rem;
+      background-color: v.$primary-green;
+      color: #fff;
+      border: none;
+      text-decoration: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: v.$primary-green-dark;
+      }
+    }
+  }
+}
+
+.story-section {
+  background-color: #e8f5e9;
+  padding: 3.75rem 1.25rem;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 1.25rem;
+    color: v.$text-dark;
+    @include m.responsive-text(2rem, 1.5rem, 1.25rem);
+  }
+
+  .story-content {
+    max-width: 37.5rem; // 600px
+    margin: 0 auto 1.875rem;
+    color: v.$text-muted;
+    line-height: 1.6;
+  }
+
+  .btn-outline {
+    padding: 0.625rem 1.25rem;
+    border: 1px solid v.$primary-green;
+    background-color: #fff;
+    color: v.$primary-green;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: v.$primary-green;
+      color: #fff;
+    }
+  }
 }

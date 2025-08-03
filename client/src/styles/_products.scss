@@ -1,53 +1,52 @@
 @use 'variables' as *;
+@use 'mixins' as *;
 
 .products-page {
   background-color: $secondary-color;
   min-height: 100vh;
-  padding: 40px $padding-base;
+  padding: 2.5rem $padding-base; // 40px => 2.5rem
 
   .products-container {
-    max-width: 1200px;
+    max-width: 75rem; // 1200px
     margin: 0 auto;
   }
 
   .products-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem; // 40px
 
     h1 {
-      font-size: 2.5rem;
       font-weight: bold;
       color: $text-color;
+      @include responsive-text(2.5rem, 2rem, 1.75rem);
     }
 
     p {
-      font-size: 1.1rem;
-      color: #555;
-      max-width: 600px;
+      color: $text-muted;
+      max-width: 37.5rem; // 600px
       margin: 0 auto;
+      @include responsive-text(1.1rem, 1rem, 0.95rem);
     }
   }
 
   .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px;
+    @include responsive-grid(18.75rem); // 300px
 
     .product-card {
       background: $light-bg;
       border: 1px solid #ddd;
       border-radius: $border-radius;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05); // 2px 4px
       overflow: hidden;
       transition: 0.3s;
 
       &:hover {
-        transform: translateY(-5px);
+        transform: translateY(-0.3125rem); // -5px
       }
 
       .product-img {
         width: 100%;
-        height: 200px;
+        height: 12.5rem; // 200px
         object-fit: cover;
       }
 
@@ -63,13 +62,13 @@
           .product-title {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
 
             h2 {
-              font-size: 1.25rem;
               font-weight: 600;
               margin: 0;
               color: $text-color;
+              @include responsive-text(1.25rem, 1.1rem, 1rem);
             }
           }
 
@@ -91,37 +90,37 @@
         }
 
         .product-tags {
-          margin: 8px 0;
+          margin: 0.5rem 0;
 
           .tag {
             font-size: 0.75rem;
-            padding: 4px 8px;
-            margin-right: 5px;
+            padding: 0.25rem 0.5rem;
+            margin-right: 0.3125rem;
             background-color: #eee;
-            border-radius: 4px;
+            border-radius: 0.25rem;
             display: inline-block;
           }
         }
 
         .product-desc {
-          color: #666;
-          margin-bottom: 12px;
+          color: $text-muted;
+          margin-bottom: 0.75rem;
         }
 
         .product-benefits {
           h4 {
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
             font-weight: bold;
             color: $text-color;
           }
 
           ul {
-            padding-left: 20px;
+            padding-left: 1.25rem;
 
             li {
               font-size: 0.9rem;
               color: #555;
-              margin-bottom: 4px;
+              margin-bottom: 0.25rem;
             }
           }
         }
@@ -131,10 +130,10 @@
           justify-content: space-between;
           align-items: center;
           flex-wrap: wrap;
-          gap: 8px;
+          gap: 0.5rem;
 
           .product-rating {
-            color: #facc15;
+            color: $rating-color;
 
             small {
               color: #888;
@@ -143,11 +142,11 @@
           }
 
           .btn-order {
-            padding: 8px 12px;
+            padding: 0.5rem 0.75rem;
             background-color: #22c55e;
             color: $light-bg;
             border: none;
-            border-radius: 4px;
+            border-radius: 0.25rem;
             cursor: pointer;
 
             &:hover {
@@ -162,30 +161,30 @@
   .products-cta {
     text-align: center;
     background-color: #e0f7ec;
-    padding: 40px;
-    margin-top: 60px;
+    padding: 2.5rem;
+    margin-top: 3.75rem;
     border-radius: $border-radius;
 
     h2 {
-      font-size: 1.5rem;
       font-weight: bold;
-      margin-bottom: 16px;
+      margin-bottom: 1rem;
       color: $text-color;
+      @include responsive-text(1.5rem, 1.25rem, 1.1rem);
     }
 
     p {
-      margin-bottom: 24px;
+      margin-bottom: 1.5rem;
       color: #444;
     }
 
     .btn-contact {
-      padding: 10px 20px;
+      padding: 0.625rem 1.25rem;
       background-color: #16a34a;
       color: $light-bg;
       border: none;
       border-radius: $border-radius;
       cursor: pointer;
-      font-size: 1rem;
+      @include responsive-text(1rem, 0.95rem, 0.9rem);
 
       &:hover {
         background-color: #15803d;
@@ -193,17 +192,13 @@
     }
   }
 
-  // 📱 Media Queries
-  @media (max-width: 768px) {
-    padding: 20px 12px;
-
-    .products-header h1 {
-      font-size: 2rem;
-    }
+  // Responsive adjustments
+  @media (max-width: $breakpoint-md) {
+    padding: 1.25rem 0.75rem;
 
     .product-info .product-top {
       flex-direction: column;
-      gap: 8px;
+      gap: 0.5rem;
       align-items: flex-start;
     }
 
@@ -213,23 +208,7 @@
     }
 
     .products-cta {
-      padding: 20px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .products-header p {
-      font-size: 1rem;
-    }
-
-    .products-cta h2 {
-      font-size: 1.25rem;
-    }
-
-    .btn-order,
-    .btn-contact {
-      font-size: 0.9rem;
-      padding: 8px 16px;
+      padding: 1.25rem;
     }
   }
 }

@@ -1,36 +1,41 @@
+// _notfound.scss
 @use 'variables' as *;
+@use 'mixins' as *;
 
 .notfound-page {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f3f4f6;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  padding: 2rem;
 
-    .notfound-content {
-        text-align: center;
+  .notfound-content {
+    text-align: center;
 
-        h1 {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: $text-color;
-        }
-
-        p {
-            font-size: 1.25rem;
-            color: #555;
-            margin-bottom: 1.5rem;
-        }
-
-        .notfound-link {
-            color: #2563eb;
-            text-decoration: underline;
-            font-weight: 500;
-
-            &:hover {
-                text-decoration: none;
-            }
-        }
+    h1 {
+      @include responsive-text(3rem, 2.5rem, 2rem);
+      font-weight: bold;
+      margin-bottom: 1rem;
+      color: $text-color;
     }
+
+    p {
+      @include responsive-text(1.25rem, 1.125rem, 1rem);
+      color: #555;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .notfound-link {
+      color: #2563eb;
+      text-decoration: underline;
+      font-weight: 500;
+      @include responsive-text(1rem, 0.9375rem, 0.875rem);
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }

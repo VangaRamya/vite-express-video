@@ -17,7 +17,15 @@ $rating-color: #fbbf24; // Gold color for star ratings
 
 // Typography
 $font-stack: 'Inter', system-ui, sans-serif;
+//$font-stack: 'Dancing Script', cursive;
 
 // Spacing
-$padding-base: 16px;
-$border-radius: 6px;
+$padding-base: 1rem; // instead of 16px
+$border-radius: 0.375rem; // instead of 6px
+
+
+$breakpoint-xs: 375px; // iPhone SE
+$breakpoint-sm: 576px; // Android phones, iPhone 6/7/8
+$breakpoint-md: 768px; // iPads, Tablets
+$breakpoint-lg: 1024px; // Laptops
+$breakpoint-xl: 1280px; // Desktops
