@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import "../styles/main.scss"; // ensure global SCSS is available
 
 const NotFound = () => {
   const location = useLocation();
@@ -12,27 +13,13 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: "#f3f4f6"
-    }}>
-      <div style={{ textAlign: "center" }}>
-        <h1 style={{ fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem" }}>404</h1>
-        <p style={{ fontSize: "1.25rem", color: "#555", marginBottom: "1.5rem" }}>
-          Oops! Page not found
-        </p>
-        <a
-          href="/"
-          style={{
-            color: "#2563eb",
-            textDecoration: "underline"
-          }}
-        >
+    <div className="notfound-page">
+      <div className="notfound-content">
+        <h1>404</h1>
+        <p>Oops! Page not found</p>
+        <Link to="/" className="notfound-link">
           Return to Home
-        </a>
+        </Link>
       </div>
     </div>
   );

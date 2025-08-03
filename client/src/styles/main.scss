@@ -1,0 +1,13 @@
+/* src/styles/main.scss */
+
+
+@use 'variables' as *;
+@use './mixins';
+@use './globals';
+@use './layout';
+@use 'buttons';
+@use 'home';
+@use 'products';
+@use 'about';
+@use 'contact';
+@use './notfound';

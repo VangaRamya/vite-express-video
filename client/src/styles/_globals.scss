@@ -1,0 +1,30 @@
+// _globals.scss
+@use 'variables' as *;
+:root {
+    font-family: $font-stack;
+    background-color: $light-bg;
+    color: $text-color;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    background-color: $light-bg;
+    color: $text-color;
+  }
+  
+  a {
+    color: $primary-color;
+    text-decoration: none;
+  
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  

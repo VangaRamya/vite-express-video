@@ -1,133 +1,5 @@
-import { useState } from "react";
-import styled from "styled-components";
-
-const Container = styled.div`
-  min-height: 100vh;
-  padding: 3rem 1rem;
-  background-color: #f9fafb;
-  color: #111827;
-`;
-
-const Wrapper = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-`;
-
-const SectionTitle = styled.h1`
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  text-align: center;
-`;
-
-const SectionDescription = styled.p`
-  color: #6b7280;
-  max-width: 600px;
-  margin: 0 auto 3rem;
-  text-align: center;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: 1fr;
-
-  @media (min-width: 1024px) {
-    grid-template-columns: 1fr 2fr;
-  }
-`;
-
-const Card = styled.div`
-  background-color: white;
-  padding: 1.5rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  margin-bottom: 2rem;
-`;
-
-const CardTitle = styled.h3`
-  font-size: 1.125rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
-const InfoItem = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-
-  & > div {
-    font-size: 0.875rem;
-    p {
-      margin: 4px 0;
-    }
-  }
-
-  & span {
-    font-size: 1.125rem;
-  }
-`;
-
-const Label = styled.label`
-  display: block;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-`;
-
-const Input = styled.input`
-  width: 80%;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-`;
-
-const Select = styled.select`
-  width: 90%;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-`;
-
-const Textarea = styled.textarea`
-  width: 93%;
-  border: 1px solid #d1d5db;
-  border-radius: 0.375rem;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-`;
-
-const CheckboxLabel = styled.label`
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  font-size: 0.875rem;
-  line-height: 1.4;
-`;
-
-const SubmitButton = styled.button`
-  width: 100%;
-  background-color: #16a34a;
-  color: white;
-  padding: 0.75rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  border: none;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #15803d;
-  }
-
-  &:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
-`;
+import React, { useState } from "react";
+import "../styles/main.scss"; // Globally available styles
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -163,14 +35,12 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (!formData.terms) {
-            alert("You must accept our terms and conditions to proceed.");
+            alert("Please accept terms and conditions.");
             return;
         }
 
         setIsSubmitting(true);
-
         try {
             const response = await fetch("https://vite-express-video.onrender.com/api/contact", {
                 method: "POST",
@@ -194,62 +64,64 @@ const Contact = () => {
                     terms: false,
                 });
             } else {
-                throw new Error(data.message || "Failed to send message");
+                throw new Error(data.message || "Something went wrong.");
             }
         } catch (error) {
-            console.error("Error:", error);
-            alert("Something went wrong. Please try again later.");
+            console.error(error);
+            alert("Submission failed. Try again.");
         } finally {
             setIsSubmitting(false);
         }
     };
 
     return (
-        <Container>
-            <Wrapper>
-                <SectionTitle>Get in Touch</SectionTitle>
-                <SectionDescription>
-                    Ready to experience fresh, locally grown microgreens? Contact us to
-                    place an order or learn more about our growing process.
-                </SectionDescription>
+        <div className="contact-page">
+            <div className="contact-container">
+                <div className="contact-header">
+                    <h1>Get in Touch</h1>
+                    <p>
+                        Ready to experience fresh, locally grown microgreens? Contact us to
+                        place an order or learn more about our growing process.
+                    </p>
+                </div>
 
-                <Grid>
+                <div className="contact-grid">
                     {/* Contact Info */}
-                    <div>
-                        <Card>
-                            <CardTitle>🌿 Contact Information</CardTitle>
-                            <InfoItem>
+                    <div className="contact-info">
+                        <div className="info-card">
+                            <h3>🌿 Contact Information</h3>
+                            <div className="info-item">
                                 <span>📧</span>
                                 <div>
-                                    <p><strong>Email</strong></p>
+                                    <strong>Email</strong>
                                     <p>hello@trueleafmicrogreens.com</p>
                                 </div>
-                            </InfoItem>
-                            <InfoItem>
+                            </div>
+                            <div className="info-item">
                                 <span>📞</span>
                                 <div>
-                                    <p><strong>Phone</strong></p>
+                                    <strong>Phone</strong>
                                     <p>(555) 123-4567</p>
                                 </div>
-                            </InfoItem>
-                            <InfoItem>
+                            </div>
+                            <div className="info-item">
                                 <span>📍</span>
                                 <div>
-                                    <p><strong>Location</strong></p>
+                                    <strong>Location</strong>
                                     <p>Urban Farm, Downtown Area</p>
                                 </div>
-                            </InfoItem>
-                            <InfoItem>
+                            </div>
+                            <div className="info-item">
                                 <span>⏰</span>
                                 <div>
-                                    <p><strong>Response Time</strong></p>
+                                    <strong>Response Time</strong>
                                     <p>Within 24 hours</p>
                                 </div>
-                            </InfoItem>
-                        </Card>
+                            </div>
+                        </div>
 
-                        <Card>
-                            <CardTitle>Order Information</CardTitle>
+                        <div className="info-card">
+                            <h3>Order Information</h3>
                             <ul>
                                 <li>Fresh microgreens cut to order</li>
                                 <li>Minimum order: $20</li>
@@ -257,94 +129,82 @@ const Contact = () => {
                                 <li>Pickup appointments welcome</li>
                                 <li>Wholesale pricing for restaurants</li>
                             </ul>
-                        </Card>
+                        </div>
                     </div>
 
                     {/* Contact Form */}
-                    <Card>
+                    <div className="contact-form">
                         <form onSubmit={handleSubmit}>
-                            <CardTitle>Place Your Order</CardTitle>
+                            <h3>Place Your Order</h3>
 
-                            <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr" }}>
-                                <div>
-                                    <Label>Full Name *</Label>
-                                    <Input
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>Full Name *</label>
+                                    <input
                                         required
                                         value={formData.name}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, name: e.target.value })
-                                        }
+                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     />
                                 </div>
-                                <div>
-                                    <Label>Email Address *</Label>
-                                    <Input
+                                <div className="form-group">
+                                    <label>Email Address *</label>
+                                    <input
                                         type="email"
                                         required
                                         value={formData.email}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, email: e.target.value })
-                                        }
+                                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     />
                                 </div>
                             </div>
 
-                            <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr", marginTop: "1rem" }}>
-                                <div>
-                                    <Label>Phone Number</Label>
-                                    <Input
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>Phone Number</label>
+                                    <input
                                         value={formData.phone}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, phone: e.target.value })
-                                        }
+                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                     />
                                 </div>
-                                <div>
-                                    <Label>Order Type *</Label>
-                                    <Select
+                                <div className="form-group">
+                                    <label>Order Type *</label>
+                                    <select
                                         required
                                         value={formData.orderType}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, orderType: e.target.value })
-                                        }
+                                        onChange={(e) => setFormData({ ...formData, orderType: e.target.value })}
                                     >
                                         <option value="">Select order type</option>
                                         <option value="personal">Personal Order</option>
                                         <option value="restaurant">Restaurant/Business</option>
                                         <option value="weekly">Weekly Subscription</option>
                                         <option value="inquiry">General Inquiry</option>
-                                    </Select>
+                                    </select>
                                 </div>
                             </div>
 
-                            <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "1fr 1fr", marginTop: "1rem" }}>
-                                <div>
-                                    <Label>Address *</Label>
-                                    <Input
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>Address *</label>
+                                    <input
                                         required
                                         value={formData.address}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, address: e.target.value })
-                                        }
+                                        onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                                     />
                                 </div>
-                                <div>
-                                    <Label>Landmark *</Label>
-                                    <Input
+                                <div className="form-group">
+                                    <label>Landmark *</label>
+                                    <input
                                         required
                                         value={formData.landmark}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, landmark: e.target.value })
-                                        }
+                                        onChange={(e) => setFormData({ ...formData, landmark: e.target.value })}
                                     />
                                 </div>
                             </div>
 
-                            <div style={{ marginTop: "1rem" }}>
-                                <Label>Which microgreens interest you?</Label>
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem", marginTop: "0.5rem" }}>
+                            <div className="form-group">
+                                <label>Which microgreens interest you?</label>
+                                <div className="checkbox-grid">
                                     {microgreens.map((product) => (
-                                        <CheckboxLabel key={product}>
+                                        <label key={product} className="checkbox-label">
                                             <input
                                                 type="checkbox"
                                                 checked={formData.products.includes(product)}
@@ -353,45 +213,38 @@ const Contact = () => {
                                                 }
                                             />
                                             {product}
-                                        </CheckboxLabel>
+                                        </label>
                                     ))}
                                 </div>
                             </div>
 
-                            <div style={{ marginTop: "1rem" }}>
-                                <Label>Message or Special Requirements</Label>
-                                <Textarea
+                            <div className="form-group">
+                                <label>Message or Special Requirements</label>
+                                <textarea
                                     rows="4"
-                                    placeholder="Tell us about your order, delivery preferences, questions, or any special requirements"
+                                    placeholder="Tell us about your order, delivery preferences, etc."
                                     value={formData.message}
-                                    onChange={(e) =>
-                                        setFormData({ ...formData, message: e.target.value })
-                                    }
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 />
                             </div>
 
-                            <div style={{ marginTop: "1rem" , marginBottom: "1rem"}}>
-                                <CheckboxLabel>
-                                    <input
-                                        type="checkbox"
-                                        checked={formData.terms}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, terms: e.target.checked })
-                                        }
-                                    />
-                                    I agree to the terms and conditions and understand orders are
-                                    subject to availability and seasonal growing schedules.
-                                </CheckboxLabel>
+                            <div className="form-group checkbox-label">
+                                <input
+                                    type="checkbox"
+                                    checked={formData.terms}
+                                    onChange={(e) => setFormData({ ...formData, terms: e.target.checked })}
+                                />
+                                I agree to the terms and understand availability may vary.
                             </div>
 
-                            <SubmitButton type="submit" disabled={isSubmitting}>
+                            <button type="submit" className="btn" disabled={isSubmitting}>
                                 {isSubmitting ? "Sending..." : "Send Message"}
-                            </SubmitButton>
+                            </button>
                         </form>
-                    </Card>
-                </Grid>
-            </Wrapper>
-        </Container>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 

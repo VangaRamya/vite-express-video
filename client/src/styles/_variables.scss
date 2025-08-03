@@ -1,0 +1,23 @@
+// _variables.scss
+
+// Colors
+$primary-color: #38bdf8;
+$primary-green: #38bdf8; // Adding this for consistency
+$primary-green-dark: #0ea5e9; // Darker shade for hover states
+$secondary-color: #f9f9f9;
+$text-color: #000;
+$text-dark: #000;
+$text-muted: #666;
+$light-bg: #fff;
+$dark-bg: #242424;
+$background-light: #f9f9f9;
+$badge-bg: #e5f3ff; // Light blue background for badges
+$badge-color: #0ea5e9; // Dark blue text color for badges
+$rating-color: #fbbf24; // Gold color for star ratings
+
+// Typography
+$font-stack: 'Inter', system-ui, sans-serif;
+
+// Spacing
+$padding-base: 16px;
+$border-radius: 6px;
