@@ -2,9 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import heroImage from "../assets/hero-microgreens.jpg";
 import sunflowerImage from "../assets/sunflower-microgreens.jpg";
-import radishImage from "../assets/radish-microgreens.jpg"; 
+import radishImage from "../assets/radish-microgreens.jpg";
 import peasImage from "../assets/pea-microgreens.jpg";
-import "../styles/home.scss";
 
 const Home = () => {
   const featuredProducts = [
@@ -57,7 +56,7 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section 
+      <section
         className="hero-section"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
@@ -107,10 +106,10 @@ const Home = () => {
         <div className="products-grid">
           {featuredProducts.map((product, i) => (
             <div key={i} className="product-card">
-              <img 
-                src={product.image} 
-                alt={product.name} 
-                className="product-image" 
+              <img
+                src={product.image}
+                alt={product.name}
+                className="product-image"
               />
               <div className="product-content">
                 <div className="product-header">
@@ -137,8 +136,8 @@ const Home = () => {
       <section className="story-section">
         <h2>Our Urban Farming Journey</h2>
         <p className="story-content">
-          What started as a small experiment in our apartment has grown into a passion for 
-          providing fresh, nutrient-dense microgreens to our community. We believe in 
+          What started as a small experiment in our apartment has grown into a passion for
+          providing fresh, nutrient-dense microgreens to our community. We believe in
           sustainable practices, local food systems, and the incredible power of these tiny greens.
         </p>
         <Link to="/about" className="btn-outline">

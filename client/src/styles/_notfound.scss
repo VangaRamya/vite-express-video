@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+.notfound-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+
+    .notfound-content {
+        text-align: center;
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: $text-color;
+        }
+
+        p {
+            font-size: 1.25rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .notfound-link {
+            color: #2563eb;
+            text-decoration: underline;
+            font-weight: 500;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
