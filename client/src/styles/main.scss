@@ -2,7 +2,7 @@
 
 
 @use 'variables' as *;
-@use './mixins';
+@use './mixins' as *;
 @use './globals';
 @use './layout';
 @use 'buttons';

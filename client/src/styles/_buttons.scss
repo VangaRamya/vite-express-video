@@ -2,16 +2,17 @@
 @use 'variables' as *;
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: $border-radius;
-    border: none;
-    background-color: $primary-color;
-    color: #fff;
-    font-weight: 500;
-    cursor: pointer;
+  padding: 0.625rem 1.25rem; // 10px 20px
+  font-size: 1rem; // 16px
+  border-radius: $border-radius;
+  border: none;
+  background-color: $primary-color;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 
-    &:hover {
-        opacity: 0.9;
-    }
+  &:hover {
+    opacity: 0.9;
+  }
 }

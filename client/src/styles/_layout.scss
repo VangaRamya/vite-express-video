@@ -1,93 +1,104 @@
-/* _layout.scss */
+@use 'variables' as *;
+@use 'mixins' as *;
 
-// Root container
 #root {
-    max-width: 1280px;
+    max-width: 80rem;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
 }
 
-// Logo block (merged)
+// Logo
 .logo {
-    height: 6em;
-    padding: 1.5em;
+    padding: 1.5rem;
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #222;
+    color: $text-dark;
     transition: filter 300ms;
 
     &:hover {
-        filter: drop-shadow(0 0 2em #646cffaa);
-    }
-
-    &.react:hover {
-        filter: drop-shadow(0 0 2em #61dafbaa);
+        filter: drop-shadow(0 0 2em rgba(100, 108, 255, 0.67));
     }
 
     .logo-icon {
         font-size: 1.5rem;
-        margin-right: 8px;
+        margin-right: 0.5rem;
     }
 
     .logo-text {
         font-size: 1.25rem;
         font-weight: 600;
+
+        @include responsive-text(1.25rem, 1.125rem, 1rem);
     }
 }
 
-// Layout wrapper
+// Layout
 .layout {
     min-height: 100vh;
-    background-color: #f9f9f9;
+    background-color: $background-light;
 }
 
 // Navbar
 .navbar {
-    background-color: #fff;
+    background-color: $light-bg;
     border-bottom: 1px solid #ddd;
-    padding: 0 20px;
-}
+    padding: 0 $padding-base;
 
-.navbar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-// Navigation links
-.nav-link {
-    padding: 8px 12px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    color: #444;
-
-    &.active {
-        border-bottom: 2px solid green;
-        color: green;
+    .navbar-container {
+        max-width: 75rem;
+        margin: 0 auto;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }
 
-// Mobile menu
+// Desktop Navigation
+.desktop-nav {
+    display: none;
+
+    @media (min-width: $breakpoint-md) {
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+// Nav Link
+.nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: $text-muted;
+
+    &.active {
+        border-bottom: 2px solid $primary-green;
+        color: $primary-green-dark;
+    }
+}
+
+// Mobile toggle button
 .mobile-toggle {
-    background: none;
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
+
+    @media (min-width: $breakpoint-md) {
+        display: none;
+    }
 }
 
+// Mobile Navigation
 .mobile-nav {
     background-color: #f0f0f0;
-    padding: 10px 0;
+    padding: 0.625rem 0;
 
     .mobile-link {
         display: block;
-        padding: 10px 20px;
+        padding: 0.625rem 1.25rem;
         text-decoration: none;
         color: #333;
         font-weight: 500;
@@ -97,59 +108,55 @@
             color: #0f5132;
         }
     }
+
+    @media (min-width: $breakpoint-md) {
+        display: none;
+    }
 }
 
-// Main content
+// Main Content
 .main-content {
-    padding: 20px;
-    background-color: #fff;
+    padding: 1.25rem;
+    background-color: $light-bg;
+
+    @media (max-width: $breakpoint-sm) {
+        padding: 1rem;
+    }
 }
 
 // Footer
 .footer {
-    margin-top: 40px;
+    margin-top: 2.5rem;
     border-top: 1px solid #ddd;
-    background-color: #fff;
-    padding: 20px 0;
-}
+    background-color: $light-bg;
+    padding: 1.25rem 0;
 
-.footer-content {
-    text-align: center;
+    .footer-content {
+        text-align: center;
 
-    .footer-logo {
-        margin-bottom: 10px;
+        .footer-logo {
+            margin-bottom: 0.625rem;
 
-        .logo-icon {
-            font-size: 1.25rem;
-            margin-right: 8px;
+            .logo-icon {
+                font-size: 1.25rem;
+                margin-right: 0.5rem;
+            }
+
+            .logo-text {
+                font-weight: 600;
+                font-size: 1.125rem;
+            }
         }
 
-        .logo-text {
-            font-weight: 600;
+        .footer-tagline {
+            font-size: 0.875rem;
+            color: $text-muted;
         }
-    }
 
-    .footer-tagline {
-        font-size: 14px;
-        color: #666;
-    }
-
-    .footer-copyright {
-        font-size: 12px;
-        color: #999;
-        margin-top: 4px;
-    }
-}
-
-// Responsive styles
-@media (min-width: 768px) {
-    .desktop-nav {
-        display: flex;
-        gap: 16px;
-    }
-
-    .mobile-toggle,
-    .mobile-nav {
-        display: none !important;
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: #999;
+            margin-top: 0.25rem;
+        }
     }
 }

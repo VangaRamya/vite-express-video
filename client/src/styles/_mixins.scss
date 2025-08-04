@@ -1,19 +1,30 @@
+@use 'variables' as *;
+
 // _mixins.scss
 
-@mixin responsive-text {
-  font-size: 16px;
+// Responsive font-size using rem
+@mixin responsive-text($desktop: 1.125rem, $tablet: 1rem, $mobile: 0.875rem) {
+  font-size: $desktop;
 
-  @media (max-width: 768px) {
-    font-size: 14px;
+  @media (max-width: $breakpoint-md) {
+    font-size: $tablet;
   }
 
-  @media (max-width: 480px) {
-    font-size: 12px;
+  @media (max-width: $breakpoint-sm) {
+    font-size: $mobile;
   }
 }
 
+// Flexbox centering
 @mixin center-content {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+// Responsive grid layout
+@mixin responsive-grid($min: 15rem) {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
 }
