@@ -71,7 +71,14 @@
     }
 
     .values-grid {
-      @include responsive-grid(18.75rem); // 300px min
+      @include responsive-grid(18.75rem); // 300px min  
+      @media (max-width: 480px) {
+        @include responsive-grid(14rem); // For small phones
+      }
+    
+      @media (max-width: 360px) {
+        @include responsive-grid(100%); // Full width card for ultra small screens
+      }
 
       .value-card {
         border: 1px solid #ddd;

@@ -32,6 +32,14 @@
   .products-grid {
     @include responsive-grid(18.75rem); // 300px
 
+    @media (max-width: 480px) {
+      @include responsive-grid(14rem); // For small phones
+    }
+  
+    @media (max-width: 360px) {
+      @include responsive-grid(100%); // Full width card for ultra small screens
+    }
+    
     .product-card {
       background: $light-bg;
       border: 1px solid #ddd;

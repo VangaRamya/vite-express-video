@@ -131,6 +131,12 @@
 
   .products-grid {
     @include m.responsive-grid(18rem);
+    @media (max-width: 480px) {
+      @include m.responsive-grid(14rem); // For small phones
+    }
+    @media (max-width: 360px) {
+      @include m.responsive-grid(100%); // Full width card for ultra small screens
+    }
 
     .product-card {
       border: 1px solid #ccc;
