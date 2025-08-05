@@ -189,6 +189,8 @@
           padding: 0.5rem 0;
           transition: all 0.2s ease;
           align-self: flex-start;
+          margin-top: auto;         // ✅ Pushes to bottom
+          align-self: flex-end; 
           @include m.responsive-text(0.9rem, 0.85rem, 0.8rem);
 
           @media (max-width: v.$breakpoint-sm) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; 
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
@@ -60,50 +60,50 @@ const Cart = () => {
                 </div>
 
                 <div className="item-details">
-                  <div className="item-info">
-                    <div className="item-header-row">
-                      <h3>{item.name}</h3>
+                  <div className="item-meta">
+                    <div className="item-info">
+                      <div className="item-header-row">
+                        <h3>{item.name}</h3>
 
-                      <div className="item-quantity-inline">
-                        <label>Quantity:</label>
-                        <div className="quantity-controls">
-                          <button
-                            onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                            disabled={item.quantity <= 1}
-                            className="quantity-btn"
-                          >
-                            -
-                          </button>
-                          <span className="quantity-display">{item.quantity}</span>
-                          <button
-                            onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                            className="quantity-btn"
-                          >
-                            +
-                          </button>
+                        <div className="item-quantity-inline">
+                          <label>Quantity:</label>
+                          <div className="quantity-controls">
+                            <button
+                              onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                              disabled={item.quantity <= 1}
+                              className="quantity-btn"
+                            >
+                              -
+                            </button>
+                            <span className="quantity-display">{item.quantity}</span>
+                            <button
+                              onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                              className="quantity-btn"
+                            >
+                              +
+                            </button>
+                          </div>
                         </div>
+                      </div>
+
+                      <div className="item-tags">
+                        {item.tags.map((tag, index) => (
+                          <span key={index} className="tag">{tag}</span>
+                        ))}
                       </div>
                     </div>
 
-                    <div className="item-tags">
-                      {item.tags.map((tag, index) => (
-                        <span key={index} className="tag">{tag}</span>
-                      ))}
+                    <div className="item-price">
+                      <div className="item-left">
+                        <span className="price">{item.price}</span>
+                        <span className="item-weight">{item.weight}</span>
+                      </div>
+                      <div className="item-total">
+                        <span>Total:</span>
+                        <span>${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}</span>
+                      </div>
                     </div>
                   </div>
-
-
-                  <div className="item-price">
-                    <div className="item-left">
-                      <span className="price">{item.price}</span>
-                      <span className="item-weight">{item.weight}</span >
-                    </div>
-                    <div className="item-total">
-                      <span> Total : </span>
-                      <span>${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}</span>
-                    </div>
-                  </div>
-
 
                   <button
                     onClick={() => removeFromCart(item.id)}
@@ -157,10 +157,7 @@ const Cart = () => {
                 Continue Shopping
               </Link>
 
-              <button
-                onClick={clearCart}
-                className="btn-clear-cart"
-              >
+              <button onClick={clearCart} className="btn-clear-cart">
                 Clear Cart
               </button>
             </div>
@@ -197,4 +194,4 @@ const Cart = () => {
   );
 };
 
-export default Cart; 
+export default Cart;
