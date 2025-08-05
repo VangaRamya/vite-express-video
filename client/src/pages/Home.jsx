@@ -1,35 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import heroImage from "../assets/hero-microgreens.jpg";
-import sunflowerImage from "../assets/sunflower-microgreens.jpg";
-import radishImage from "../assets/radish-microgreens.jpg";
-import peasImage from "../assets/pea-microgreens.jpg";
+import { products } from "../data/products";
 
 const Home = () => {
-  const featuredProducts = [
-    {
-      name: "Sunflower Microgreens",
-      image: sunflowerImage,
-      price: "$8",
-      description: "Nutty flavor, rich in vitamin E",
-      badge: "Popular",
-    },
-    {
-      name: "Radish Microgreens",
-      image: radishImage,
-      price: "$6",
-      description: "Spicy kick, loaded with antioxidants",
-      badge: "Spicy",
-    },
-    {
-      name: "Pea Shoot Microgreens",
-      image: peasImage,
-      price: "$7",
-      description: "Sweet taste, high in protein",
-      badge: "Sweet",
-    },
-  ];
-
   const benefits = [
     {
       icon: "❤️",
@@ -97,38 +71,58 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Featured Products */}
+      {/* All Products */}
       <section className="featured-products">
-        <h2>Featured Microgreens</h2>
+        <h2>Our Microgreens Collection</h2>
         <p className="section-description">
-          Our most popular varieties, fresh from the growing trays
+          Premium, locally grown microgreens harvested at peak nutrition.
+          Each variety offers unique flavors and incredible health benefits.
         </p>
+        
+         {/* Products Grid */}
         <div className="products-grid">
-          {featuredProducts.map((product, i) => (
-            <div key={i} className="product-card">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="product-image"
-              />
-              <div className="product-content">
-                <div className="product-header">
-                  <h3>{product.name}</h3>
-                  <span className="badge">{product.badge}</span>
+          {products.map((product, index) => (
+            <div className="product-card" key={index}>
+              <img src={product.image} alt={product.name} className="product-img" />
+
+              <div className="product-info">
+                <div className="product-top">
+                  <div className="product-title">
+                    <span className="product-icon">{product.icon}</span>
+                    <h2>{product.name}</h2>
+                  </div>
+                  <div className="product-price">
+                    <span>{product.price}</span>
+                    <small>{product.weight}</small>
+                  </div>
                 </div>
-                <p className="product-description">{product.description}</p>
+
+                <div className="product-tags">
+                  {product.tags.map((tag, i) => (
+                    <span className="tag" key={i}>{tag}</span>
+                  ))}
+                </div>
+
+                <p className="product-desc">{product.description}</p>
+
+                <div className="product-benefits">
+                  <h4>❤️ Health Benefits</h4>
+                  <ul>
+                    {product.benefits.slice(0, 2).map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
+                </div>
+
                 <div className="product-footer">
-                  <strong className="price">{product.price}</strong>
-                  <div className="rating">{"⭐".repeat(5)}</div>
+                  <div className="product-rating">{"⭐".repeat(5)} <small>(4.9)</small></div>
+                  <Link to={`/products/${product.id}`}>
+                    <button className="btn-order">Order Now</button>
+                  </Link>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-        <div className="view-all-button">
-          <Link to="/products" className="btn-primary">
-            View All Products
-          </Link>
         </div>
       </section>
 

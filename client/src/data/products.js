@@ -3,6 +3,9 @@ import radishImage from "../assets/radish-microgreens.jpg";
 import wheatgrassImage from "../assets/wheatgrass-microgreens.jpg";
 import peasImage from "../assets/pea-microgreens.jpg";
 import mustardImage from "../assets/mustard-microgreens.jpg";
+import broccoliImage from "../assets/broccoli-microgreens.jpg";
+import kaleImage from "../assets/kale-microgreens.jpg";
+import arugulaImage from "../assets/arugula-microgreens.jpeg";
 
 export const products = [
   {
@@ -93,6 +96,24 @@ export const products = [
     tags: ["Bold", "Immune"],
     icon: "🔥",
     stock: 35,
+    category: "microgreens",
+  },
+  {
+    id: "broccoli-microgreens",
+    name: "Broccoli Microgreens",
+    image: broccoliImage,
+    price: "$9",
+    weight: "100g",
+    description: "Mild, earthy microgreens with a subtle broccoli flavor",
+    benefits: [
+      "Rich in sulforaphane and antioxidants",
+      "High in vitamins C and K",
+      "Contains cancer-fighting compounds",
+      "Supports detoxification and immunity",
+    ],
+    tags: ["Cancer-Fighting", "Detox"],
+    icon: "🛡️",
+    stock: 25,
     category: "microgreens",
   },
 ];
