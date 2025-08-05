@@ -62,7 +62,7 @@ const Cart = () => {
                 <div className="item-details">
                   <div className="item-info">
                     <h3>{item.name}</h3>
-                    <p className="item-weight">{item.weight}</p>
+                    
                     <div className="item-tags">
                       {item.tags.map((tag, index) => (
                         <span key={index} className="tag">{tag}</span>
@@ -72,6 +72,7 @@ const Cart = () => {
                   
                   <div className="item-price">
                     <span className="price">{item.price}</span>
+                    <p className="item-weight">{item.weight}</p>
                   </div>
                   
                   <div className="item-quantity">
