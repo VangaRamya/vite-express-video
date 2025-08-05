@@ -1,9 +1,14 @@
 // src/components/Layout.jsx
 import React, { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const { getCartCount } = useCart();
+  const { user, logout } = useAuth();
 
   const navigation = [
     { name: "Home", path: "/" },
@@ -34,6 +39,43 @@ const Layout = () => {
                 {item.name}
               </NavLink>
             ))}
+          </div>
+
+          <div className="nav-actions">
+            <Link to="/cart" className="cart-icon">
+              🛒
+              {getCartCount() > 0 && (
+                <span className="cart-badge">{getCartCount()}</span>
+              )}
+            </Link>
+            
+            {user ? (
+              <div className="user-menu">
+                <button
+                  className="user-menu-toggle"
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                >
+                  👤 {user.name}
+                </button>
+                {isUserMenuOpen && (
+                  <div className="user-dropdown">
+                    <Link to="/profile" className="dropdown-item">
+                      📋 Profile
+                    </Link>
+                    <Link to="/orders" className="dropdown-item">
+                      📦 Orders
+                    </Link>
+                    <button onClick={logout} className="dropdown-item">
+                      🚪 Logout
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link to="/login" className="login-btn">
+                Sign In
+              </Link>
+            )}
           </div>
 
           <button
