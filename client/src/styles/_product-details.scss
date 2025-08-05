@@ -167,9 +167,11 @@
 
   // Product Description
   .product-description {
+    text-align: left;
     p {
       line-height: 1.6;
       color: v.$text-muted;
+      text-align: left;
       margin: 0;
       @include m.responsive-text(1.1rem, 1rem, 0.9rem);
     }
@@ -200,6 +202,7 @@
       list-style: none;
       padding: 0;
       margin: 0;
+      text-align: left;
 
       .benefit-item {
         position: relative;
@@ -383,10 +386,11 @@
   .product-meta {
     border-top: 1px solid #e5e7eb;
     padding-top: 1.5rem;
+    padding-left: 0.5 rem;
 
     display: flex;
     flex-direction: column;
-    align-items: center; // ← this centers children horizontally
+    // align-items: center; // ← this centers children horizontally
     justify-content: center;
     text-align: center; 
    
