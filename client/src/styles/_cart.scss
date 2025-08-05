@@ -150,32 +150,35 @@
           }
         }
 
-
         .item-price {
           display: flex;
-          text-align: center;
+          justify-content: space-between;
           align-items: center;
+          gap: 1rem;
 
-          .price {
+          .item-left {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+
+            .price {
+              font-weight: 700;
+              color: v.$primary-green;
+              @include m.responsive-text(1.3rem, 1.2rem, 1.1rem);
+            }
+
+            .item-weight {
+              color: v.$text-muted;
+              margin: 0;
+              @include m.responsive-text(0.9rem, 0.85rem, 0.8rem);
+            }
+          }
+
+          .item-total {
             font-weight: 700;
-            color: v.$primary-green;
-            @include m.responsive-text(1.3rem, 1.2rem, 1.1rem);
+            color: v.$text-dark;
+            @include m.responsive-text(1.2rem, 1.1rem, 1rem);
           }
-
-          .item-weight {
-            margin-left: 0.3rem;
-            color: v.$text-muted;
-            margin-bottom: 0.5rem;
-            @include m.responsive-text(0.9rem, 0.85rem, 0.8rem);
-          }
-        }
-
-
-
-        .item-total {
-          font-weight: 700;
-          color: v.$text-dark;
-          @include m.responsive-text(1.2rem, 1.1rem, 1rem);
         }
 
         .remove-btn {

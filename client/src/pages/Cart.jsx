@@ -94,15 +94,16 @@ const Cart = () => {
 
 
                   <div className="item-price">
-                    <span className="price">{item.price}</span>
-                    <p className="item-weight">{item.weight}</p>
+                    <div className="item-left">
+                      <span className="price">{item.price}</span>
+                      <span className="item-weight">{item.weight}</span >
+                    </div>
+                    <div className="item-total">
+                      <span> Total : </span>
+                      <span>${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}</span>
+                    </div>
                   </div>
 
-
-
-                  <div className="item-total">
-                    <span>${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}</span>
-                  </div>
 
                   <button
                     onClick={() => removeFromCart(item.id)}
