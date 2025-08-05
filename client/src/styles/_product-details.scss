@@ -383,6 +383,12 @@
   .product-meta {
     border-top: 1px solid #e5e7eb;
     padding-top: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center; // ← this centers children horizontally
+    justify-content: center;
+    text-align: center; 
    
 
     .product-rating {
