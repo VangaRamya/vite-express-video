@@ -31,7 +31,7 @@ const ProductDetails = () => {
   const handleAddToCart = () => {
     setIsAddingToCart(true);
     addToCart(product, quantity);
-    
+
     // Simulate loading
     setTimeout(() => {
       setIsAddingToCart(false);
@@ -48,113 +48,161 @@ const ProductDetails = () => {
   return (
     <div className="product-details-page">
       <div className="container">
-        <div className="breadcrumb">
-          <Link to="/products">Products</Link>
-          <span> / </span>
-          <span>{product.name}</span>
-        </div>
+        {/* Breadcrumb Navigation */}
+        <nav className="breadcrumb-nav">
+          <Link to="/products" className="breadcrumb-link">Products</Link>
+          <span className="breadcrumb-separator">/</span>
+          <span className="breadcrumb-current">{product.name}</span>
+        </nav>
 
-        <div className="product-details">
-          <div className="product-images">
-            <img src={product.image} alt={product.name} className="main-image" />
+        {/* Main Product Section */}
+        <div className="product-layout">
+          {/* Product Image Section */}
+          <div className="product-gallery">
+            <div className="main-image-container">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="main-image"
+              />
+            </div>
           </div>
 
-          <div className="product-info">
-            <div className="product-header">
-              <div className="product-title">
+          {/* Product Information Section */}
+          <div className="product-content">
+            {/* Product Header */}
+            <header className="product-header">
+              <div className="product-title-section">
                 <span className="product-icon">{product.icon}</span>
-                <h1>{product.name}</h1>
+                <h1 className="product-title">{product.name}</h1>
               </div>
-              <div className="product-price">
-                <span className="price">{product.price}</span>
-                <small className="weight">{product.weight}</small>
+              <div className="product-pricing">
+                <span className="product-price">{product.price}</span>
+                <span className="product-weight">{product.weight}</span>
               </div>
-            </div>
+            </header>
 
+            {/* Product Tags */}
             <div className="product-tags">
               {product.tags.map((tag, index) => (
-                <span key={index} className="tag">{tag}</span>
+                <span key={index} className="product-tag">{tag}</span>
               ))}
             </div>
 
+            {/* Product Description */}
             <div className="product-description">
               <p>{product.description}</p>
             </div>
 
-            <div className="product-benefits">
-              <h3>❤️ Health Benefits</h3>
-              <ul>
+            {/* Health Benefits */}
+            <section className="health-benefits">
+              <h3 className="benefits-title">
+                <span className="benefits-icon">❤️</span>
+                Health Benefits
+              </h3>
+              <ul className="benefits-list">
                 {product.benefits.map((benefit, index) => (
-                  <li key={index}>{benefit}</li>
+                  <li key={index} className="benefit-item">{benefit}</li>
                 ))}
               </ul>
-            </div>
+            </section>
 
-            <div className="product-actions">
-              <div className="quantity-selector">
-                <label htmlFor="quantity">Quantity:</label>
-                <div className="quantity-controls">
-                  <button
-                    onClick={() => handleQuantityChange(quantity - 1)}
-                    disabled={quantity <= 1}
-                    className="quantity-btn"
-                  >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    id="quantity"
-                    value={quantity}
-                    onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
-                    min="1"
-                    max={product.stock}
-                    className="quantity-input"
-                  />
-                  <button
-                    onClick={() => handleQuantityChange(quantity + 1)}
-                    disabled={quantity >= product.stock}
-                    className="quantity-btn"
-                  >
-                    +
-                  </button>
-                </div>
-                <small className="stock-info">
-                  {product.stock} units available
-                </small>
-              </div>
 
-              <div className="action-buttons">
-                <button
-                  onClick={handleAddToCart}
-                  disabled={isAddingToCart}
-                  className="btn-add-to-cart"
-                >
-                  {isAddingToCart ? "Adding to Cart..." : "Add to Cart"}
-                </button>
-                <Link to="/cart" className="btn-view-cart">
-                  View Cart
-                </Link>
-              </div>
-            </div>
-
-            <div className="product-meta">
-              <div className="rating">
-                {"⭐".repeat(5)} <small>(4.9)</small>
-              </div>
-              <div className="delivery-info">
-                <p>🚚 Free delivery on orders over $30</p>
-                <p>📦 Same day delivery available</p>
-              </div>
-            </div>
           </div>
+          {/* Product Actions */}
+          <section className="product-actions">
+            {/* Quantity Selector */}
+            <div className="quantity-section">
+              <label htmlFor="quantity" className="quantity-label">Quantity:</label>
+              <div className="quantity-controls">
+                <button
+                  type="button"
+                  onClick={() => handleQuantityChange(quantity - 1)}
+                  disabled={quantity <= 1}
+                  className="quantity-btn quantity-btn-minus"
+                  aria-label="Decrease quantity"
+                >
+                  <span>−</span>
+                </button>
+                <input
+                  type="number"
+                  id="quantity"
+                  value={quantity}
+                  onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
+                  min="1"
+                  max={product.stock}
+                  className="quantity-input"
+                  aria-label="Product quantity"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleQuantityChange(quantity + 1)}
+                  disabled={quantity >= product.stock}
+                  className="quantity-btn quantity-btn-plus"
+                  aria-label="Increase quantity"
+                >
+                  <span>+</span>
+                </button>
+              </div>
+              <p className="stock-info">
+                {product.stock} units available
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="action-buttons">
+              <button
+                type="button"
+                onClick={handleAddToCart}
+                disabled={isAddingToCart}
+                className="btn btn-primary btn-add-to-cart"
+              >
+                {isAddingToCart ? (
+                  <>
+                    <span className="loading-spinner"></span>
+                    Adding to Cart...
+                  </>
+                ) : (
+                  "Add to Cart"
+                )}
+              </button>
+              <Link to="/cart" className="btn btn-secondary btn-view-cart">
+                View Cart
+              </Link>
+            </div>
+          </section>
+
+          {/* Product Meta Information */}
+          <section className="product-meta">
+            <div className="product-rating">
+              <div className="stars">
+                {[...Array(5)].map((_, index) => (
+                  <span key={index} className="star">⭐</span>
+                ))}
+              </div>
+              <span className="rating-text">(4.9)</span>
+            </div>
+
+            <div className="delivery-info">
+              <div className="delivery-item">
+                <span className="delivery-icon">🚚</span>
+                <span>Free delivery on orders over $30</span>
+              </div>
+              <div className="delivery-item">
+                <span className="delivery-icon">📦</span>
+                <span>Same day delivery available</span>
+              </div>
+            </div>
+          </section>
         </div>
 
-        <div className="related-products">
-          <h2>You might also like</h2>
+        {/* Related Products Section */}
+        <section className="related-products">
+          <h2 className="related-title">You might also like</h2>
           <div className="related-grid">
             {/* This could be populated with related products */}
           </div>
-        </div>
+        </section>
       </div>
     </div>
   );
