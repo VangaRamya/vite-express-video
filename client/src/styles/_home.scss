@@ -4,6 +4,7 @@
 .hero-section {
   background-size: cover;
   background-position: center;
+  font-family: v.$font-stack;
   height: 70vh;
   @include m.center-content;
   color: v.$light-bg;

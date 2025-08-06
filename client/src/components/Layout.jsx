@@ -22,70 +22,129 @@ const Layout = () => {
       {/* Navigation */}
       <nav className="navbar">
         <div className="navbar-container">
-          <NavLink to="/" className="logo">
-            <span className="logo-icon">🌱</span>
-            <span className="logo-text">TrueLeaf Microgreens</span>
-          </NavLink>
-
-          <div className="desktop-nav">
-            {navigation.map((item) => (
-              <NavLink
-                key={item.name}
-                to={item.path}
-                className={({ isActive }) =>
-                  isActive ? "nav-link active" : "nav-link"
-                }
-              >
-                {item.name}
-              </NavLink>
-            ))}
-          </div>
-
-          <div className="nav-actions">
-            <Link to="/cart" className="cart-icon">
-              🛒
-              {getCartCount() > 0 && (
-                <span className="cart-badge">{getCartCount()}</span>
-              )}
+          {/* Desktop Layout */}
+          <div className="desktop-layout">
+            {/* Logo */}
+            <Link to="/" className="logo">
+              <span className="logo-icon">🌱</span>
+              <span className="logo-text">TrueLeaf Microgreens</span>
             </Link>
-            
-            {user ? (
-              <div className="user-menu">
-                <button
-                  className="user-menu-toggle"
-                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+
+            {/* Desktop Navigation Links */}
+            <div className="desktop-nav">
+              {navigation.map((item) => (
+                <NavLink
+                  key={item.name}
+                  to={item.path}
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active" : "nav-link"
+                  }
                 >
-                  👤 {user.name}
-                </button>
-                {isUserMenuOpen && (
-                  <div className="user-dropdown">
-                    <Link to="/profile" className="dropdown-item">
-                      📋 Profile
-                    </Link>
-                    <Link to="/orders" className="dropdown-item">
-                      📦 Orders
-                    </Link>
-                    <button onClick={logout} className="dropdown-item">
-                      🚪 Logout
-                    </button>
-                  </div>
+                  {item.name}
+                </NavLink>
+              ))}
+            </div>
+
+            {/* Desktop Actions */}
+            <div className="desktop-actions">
+              <Link to="/cart" className="cart-icon">
+                🛒
+                {getCartCount() > 0 && (
+                  <span className="cart-badge">{getCartCount()}</span>
                 )}
-              </div>
-            ) : (
-              <Link to="/login" className="login-btn">
-                Sign In
               </Link>
-            )}
+              
+              {user ? (
+                <div className="user-menu">
+                  <button
+                    className="user-menu-toggle"
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  >
+                    👤 {user.name}
+                  </button>
+                  {isUserMenuOpen && (
+                    <div className="user-dropdown">
+                      <Link to="/profile" className="dropdown-item">
+                        📋 Profile
+                      </Link>
+                      <Link to="/orders" className="dropdown-item">
+                        📦 Orders
+                      </Link>
+                      <button onClick={logout} className="dropdown-item">
+                        🚪 Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link to="/login" className="login-btn">
+                  Sign In
+                </Link>
+              )}
+            </div>
           </div>
 
-          <button
-            className="mobile-toggle"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? "✖" : "☰"}
-          </button>
+          {/* Mobile Layout */}
+          <div className="mobile-layout">
+            {/* Left: Hamburger + Logo */}
+            <div className="mobile-left">
+              <button
+                className="hamburger"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+              >
+                ☰
+              </button>
+              <Link to="/" className="mobile-logo">
+                Microgreens
+              </Link>
+            </div>
+
+            {/* Center: Search */}
+            <div className="mobile-search">
+              <div className="search-box">🔍</div>
+            </div>
+
+            {/* Right: Cart + User */}
+            <div className="mobile-right">
+              <Link to="/cart" className="cart-icon">
+                🛒
+                {getCartCount() > 0 && (
+                  <span className="cart-badge">{getCartCount()}</span>
+                )}
+              </Link>
+
+              {user ? (
+                <div className="user-menu">
+                  <button
+                    className="user-menu-toggle"
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  >
+                    👤
+                  </button>
+                  {isUserMenuOpen && (
+                    <div className="user-dropdown">
+                      <Link to="/profile" className="dropdown-item">
+                        📋 Profile
+                      </Link>
+                      <Link to="/orders" className="dropdown-item">
+                        📦 Orders
+                      </Link>
+                      <button onClick={logout} className="dropdown-item">
+                        🚪 Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link to="/login" className="login-btn">
+                  👤
+                </Link>
+              )}
+            </div>
+          </div>
         </div>
 
+        {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="mobile-nav">
             {navigation.map((item) => (

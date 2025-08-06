@@ -5,6 +5,7 @@
   background-color: $secondary-color;
   min-height: 100vh;
   padding: 2.5rem $padding-base;
+  font-family: $font-stack;
 
   .about-container {
     max-width: 56.25rem; // 900px → rem

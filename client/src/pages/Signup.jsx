@@ -89,7 +89,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="auth-page">
+    <div className="signup-page">
       <div className="container">
         <div className="auth-container">
           <div className="auth-header">
