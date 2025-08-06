@@ -1,3 +1,6 @@
+@use 'variables' as *;
+@use './mixins' as *;
+
 .auth-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #E8F5E8 0%, #F0F8F0 100%);
@@ -5,6 +8,7 @@
   align-items: center;
   justify-content: center;
   padding: 2rem 0;
+  font-family: $font-stack;
 
   .container {
     max-width: 500px;
@@ -72,6 +76,7 @@
         font-size: 1rem;
         transition: all 0.2s;
         box-sizing: border-box;
+        font-family: $font-stack;
 
         &:focus {
           outline: none;
@@ -149,6 +154,7 @@
       cursor: pointer;
       transition: all 0.2s;
       margin-bottom: 1.5rem;
+      font-family: $font-stack;
 
       &:hover:not(:disabled) {
         background: #45a049;
@@ -206,6 +212,7 @@
       font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
+      font-family: $font-stack;
 
       &:hover {
         border-color: #4CAF50;
